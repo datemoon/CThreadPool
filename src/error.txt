@@ -1,0 +1,110 @@
+In file included from CThreadPool.h:21:0,
+                 from CThreadPool.cpp:19:
+CWorkerThread.h:27:5: error: ‘CThreadPool’ does not name a type
+     CThreadPool *m_ThreadPool;
+     ^
+CWorkerThread.h:38:25: error: ‘CThreadPool’ has not been declared
+     void setCThreadPool(CThreadPool *threadpool);
+                         ^
+In file included from CThreadPool.cpp:19:0:
+CThreadPool.h:66:14: error: ‘Cjob’ has not been declared
+     void Run(Cjob *job,void *jobdata);
+              ^
+CThreadPool.cpp:21:43: error: default argument given for parameter 1 of ‘CThreadPool::CThreadPool(int)’ [-fpermissive]
+ CThreadPool::CThreadPool(int initSize = 10)
+                                           ^
+In file included from CThreadPool.cpp:19:0:
+CThreadPool.h:40:5: note: previous specification in ‘CThreadPool::CThreadPool(int)’ here
+     CThreadPool(int initSize = 10);
+     ^
+CThreadPool.cpp: In constructor ‘CThreadPool::CThreadPool(int)’:
+CThreadPool.cpp:23:41: error: ‘assert’ was not declared in this scope
+     assert(initSize > 0 && initSize < 30);
+                                         ^
+CThreadPool.cpp:29:5: error: ‘m_thread’ was not declared in this scope
+     m_thread.clear();
+     ^
+CThreadPool.cpp:41:14: error: ‘class CWorkerThread’ has no member named ‘setThreadPool’
+         thr->setThreadPool(this);
+              ^
+CThreadPool.cpp: At global scope:
+CThreadPool.cpp:68:14: error: ‘Cthread’ has not been declared
+ unsigned int Cthread::getAvaliHigh()const
+              ^
+CThreadPool.cpp:68:37: error: non-member function ‘unsigned int getAvaliHigh()’ cannot have cv-qualifier
+ unsigned int Cthread::getAvaliHigh()const
+                                     ^
+CThreadPool.cpp: In function ‘unsigned int getAvaliHigh()’:
+CThreadPool.cpp:70:12: error: ‘m_AvaliHigh’ was not declared in this scope
+     return m_AvaliHigh;
+            ^
+CThreadPool.cpp: At global scope:
+CThreadPool.cpp:76:14: error: ‘Cthread’ has not been declared
+ unsigned int Cthread::getAvaliNum()const
+              ^
+CThreadPool.cpp:76:36: error: non-member function ‘unsigned int getAvaliNum()’ cannot have cv-qualifier
+ unsigned int Cthread::getAvaliNum()const
+                                    ^
+CThreadPool.cpp: In function ‘unsigned int getAvaliNum()’:
+CThreadPool.cpp:78:12: error: ‘m_AvaliNum’ was not declared in this scope
+     return m_AvaliNum;
+            ^
+CThreadPool.cpp: In member function ‘void CThreadPool::createIdleThread(int)’:
+CThreadPool.cpp:101:14: error: ‘class CWorkerThread’ has no member named ‘setThreadPool’
+         thr->setThreadPool(this);
+              ^
+CThreadPool.cpp: In member function ‘void CThreadPool::deleteIdleThread(int)’:
+CThreadPool.cpp:118:20: error: ‘m_thread’ was not declared in this scope
+         pos = find(m_thread.begin(),m_thread.end(),thr);
+                    ^
+CThreadPool.cpp:118:55: error: ‘find’ was not declared in this scope
+         pos = find(m_thread.begin(),m_thread.end(),thr);
+                                                       ^
+CThreadPool.cpp: In member function ‘void CThreadPool::terminateAll()’:
+CThreadPool.cpp:129:19: error: ‘m_thread’ was not declared in this scope
+     for(int i=0;i<m_thread.size();++i)
+                   ^
+CThreadPool.cpp: In member function ‘void CThreadPool::moveToBusyList(CWorkerThread*)’:
+CThreadPool.cpp:144:35: error: cannot convert ‘std::vector<CWorkerThread*>*’ to ‘pthread_mutex_t*’ for argument ‘1’ to ‘int pthread_mutex_lock(pthread_mutex_t*)’
+     pthread_mutex_lock(&m_busyList);
+                                   ^
+CThreadPool.cpp:149:37: error: cannot convert ‘std::vector<CWorkerThread*>*’ to ‘pthread_mutex_t*’ for argument ‘1’ to ‘int pthread_mutex_unlock(pthread_mutex_t*)’
+     pthread_mutex_unlock(&m_busyList);
+                                     ^
+CThreadPool.cpp:157:57: error: ‘find’ was not declared in this scope
+     pos = find(m_idileList.begin(),m_idileList.end(),thr);
+                                                         ^
+CThreadPool.cpp: In member function ‘void CThreadPool::moveToIdleList(CWorkerThread*)’:
+CThreadPool.cpp:180:55: error: ‘find’ was not declared in this scope
+     pos = find(m_busyList.begin(),m_busyList.end(),thr);
+                                                       ^
+CThreadPool.cpp: In member function ‘CWorkerThread* CThreadPool::getIdleThread()’:
+CThreadPool.cpp:190:42: error: no matching function for call to ‘std::vector<CWorkerThread*>::erase(CWorkerThread*&)’
+     m_idileList.erase(m_idileList.front()); 
+                                          ^
+CThreadPool.cpp:190:42: note: candidates are:
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from Utility.h:22,
+                 from CJob.h:20,
+                 from CThreadPool.h:20,
+                 from CThreadPool.cpp:19:
+/usr/include/c++/4.9/bits/stl_vector.h:1149:7: note: std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::erase(std::vector<_Tp, _Alloc>::iterator) [with _Tp = CWorkerThread*; _Alloc = std::allocator<CWorkerThread*>; std::vector<_Tp, _Alloc>::iterator = __gnu_cxx::__normal_iterator<CWorkerThread**, std::vector<CWorkerThread*> >; typename std::_Vector_base<_Tp, _Alloc>::pointer = CWorkerThread**]
+       erase(iterator __position)
+       ^
+/usr/include/c++/4.9/bits/stl_vector.h:1149:7: note:   no known conversion for argument 1 from ‘CWorkerThread*’ to ‘std::vector<CWorkerThread*>::iterator {aka __gnu_cxx::__normal_iterator<CWorkerThread**, std::vector<CWorkerThread*> >}’
+/usr/include/c++/4.9/bits/stl_vector.h:1180:7: note: std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::erase(std::vector<_Tp, _Alloc>::iterator, std::vector<_Tp, _Alloc>::iterator) [with _Tp = CWorkerThread*; _Alloc = std::allocator<CWorkerThread*>; std::vector<_Tp, _Alloc>::iterator = __gnu_cxx::__normal_iterator<CWorkerThread**, std::vector<CWorkerThread*> >; typename std::_Vector_base<_Tp, _Alloc>::pointer = CWorkerThread**]
+       erase(iterator __first, iterator __last)
+       ^
+/usr/include/c++/4.9/bits/stl_vector.h:1180:7: note:   candidate expects 2 arguments, 1 provided
+CThreadPool.cpp: At global scope:
+CThreadPool.cpp:195:23: error: variable or field ‘Run’ declared void
+ void CThreadPool::Run(Cjob *job,void* jobdata)
+                       ^
+CThreadPool.cpp:195:23: error: ‘Cjob’ was not declared in this scope
+CThreadPool.cpp:195:29: error: ‘job’ was not declared in this scope
+ void CThreadPool::Run(Cjob *job,void* jobdata)
+                             ^
+CThreadPool.cpp:195:33: error: expected primary-expression before ‘void’
+ void CThreadPool::Run(Cjob *job,void* jobdata)
+                                 ^
+make: *** [CThreadPool.o] Error 1
